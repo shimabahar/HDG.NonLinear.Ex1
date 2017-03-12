@@ -3,9 +3,9 @@ function M = getLhsMatrix(Atild, C1tild, A, B, D2, C2, C3, C4T, C5T, C6T, E1, E2
 global n ne
 
 %     [Atild            0     -B^T     0      C1tild]
-%     [     0         B-D2      A     -C2      0]
-% M = [     B          A        0      0     -C3]
-%     [     0         C4T       0      E1      0]
+%     [     0         B-D2      A     -C2        0  ]
+% M = [     B          A        0      0        -C3 ]
+%     [     0         C4T       0      E1        0  ]
 %     [    C5T         0       -C6T     0     E2tild]
 
 m = 3*n*ne + 2*ne - 1; 

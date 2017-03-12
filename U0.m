@@ -1,2 +1,2 @@
-function out = u0(x)
+function out = U0(x)
 out = sin(2*x);

@@ -8,5 +8,5 @@ global n h
 gl = 0;
 for k = 1:np
   gl = w(k) * phi(i, 1, (h/2)*(x(k)+1)) * phi(j, 1, (h/2)*(x(k)+1)) + gl;
-end;
+end
 out = h/2 * gl;
