@@ -5,12 +5,12 @@ u = zeros(n*ne, 1);
 
 k = 0;
 for i = 1:ne
-    a = xL + (i-1)*h;
-    b = xL + i*h;
-    for j = 1:n
-        u(k+j) = integrateForProjectionQ0(j, i, a, b);
-    end
-    k = k+n;
+  a = xL + (i-1)*h;
+  b = xL + i*h;
+  for j = 1:n
+    u(k+j) = integrateForProjectionQ0(j, i, a, b);
+  end
+  k = k + n;
 end
 
 out = A \ u;

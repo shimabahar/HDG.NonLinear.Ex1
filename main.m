@@ -28,6 +28,7 @@ tau0 = 20;
 sigma = 1;
 h = double((xR-xL)/ne);
 X = xL:h:xR;
+tol = 10^-3; % error tolerance
 
 %%%% Build coefficient matrices and the left hand side matrix %%%%
 [A B] = getAandB();
@@ -57,7 +58,6 @@ Say1 = Say;
 %%%% Solve the system and calculate the error  %%%%
 for step = 0:T/dt 
   for j = 1:1000
-
     Atild = getAtild();
     C1tild = getC1tild();
     E2tild = getE2tild();
@@ -68,8 +68,8 @@ for step = 0:T/dt
     rtild = getrtild();
     stild = getstild();
 
-     R = getRhsVector(ftild,htild,ktild,rtild,stild);
-     M = getLhsMatrix(Atild, C1tild, A, B, D2, C2, C3, C4T, C5T, C6T, E1, E2tild);
+    R = getRhsVector(ftild,htild,ktild,rtild,stild);
+    M = getLhsMatrix(Atild, C1tild, A, B, D2, C2, C3, C4T, C5T, C6T, E1, E2tild);
     Answer = M \ R;
 
     U1 = U1 + Answer(1:n*ne);
@@ -78,8 +78,7 @@ for step = 0:T/dt
     landa1(2:ne) = Landa1(2:ne) + Answer(3*n*ne+1:3*n*ne+ne-1);
     Say1(2:ne+1) = Say1(2:ne+1) + Answer(3*n*ne+ne:3*n*ne+2*ne-1);
     
-    if (U1<=(10^-3)) & (Q1<=(10^-3)) & (P1<=(10^-3)) & ...
-        (Landa1<=(10^-3)) & (Say1<=(10^-3))
+    if (U1 <= tol) & (Q1 <= tol) & (P1 <= tol) & (Landa1 <= tol) & (Say1 <= tol)
       break;
     end
   end
@@ -90,10 +89,9 @@ for step = 0:T/dt
   Landa = Landa1;
   Say = say1;
 
-  Landa(1,1) = guxL(step*dt);
-  Landa(ne+1,1) = guxR(step*dt);
-
-  Say(1,1) = gqxL(step*dt);
+  Landa(1) = guxL(step*dt);
+  Landa(ne+1) = guxR(step*dt);
+  Say(1) = gqxL(step*dt);
 
   error = getL2Error(U0, step);
   disp(error);

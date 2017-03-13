@@ -7,6 +7,6 @@ global dt
 gl = 0;
 for k = 1:np
   gl = w(k) * f(step*dt,(a+b)/2+((b-a)/2)*x(k)) ...
-      * phi(j, e, (a+b)/2+((b-a)/2)*x(k)) + gl;
+       * phi(j, e, (a+b)/2+((b-a)/2)*x(k)) + gl;
 end
 out = (b-a)/2 * gl;
