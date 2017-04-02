@@ -14,14 +14,14 @@ stild_3 = zeros(ne-1, 1);
 k = 0;
 z = 0;
 for i = 1:ne-1
-  b = xL+(i)*h;
+  b = xL + i*h;
   g = 0;
     
   for j = 1:n 
-    g = U1(j+z)*phi(j, i, b) + g;
+    g = U1(j+z) * phi(j, i, b) + g;
   end
     
-  stild_3(i,1) = 2 * (-6*abs(Landa1(i+1)) + tau0) * g;
+  stild_3(i, 1) = 2 * g * (-6 * abs(Landa1(i+1)) + tau0);
   k = k + n;
   z = z + n;
 end
@@ -30,7 +30,7 @@ end
 stild_4 = zeros(ne-1, 1);
 
 for i = 1:ne-1
-  stild_4(i,1) = 2*(-6*abs(Landa1(i+1)) + tau0)*Landa1(i+1);
+  stild_4(i, 1) = 2 * Landa1(i+1) * (-6 * abs(Landa1(i+1)) + tau0);
 end
 
 % Building matrix stild_5

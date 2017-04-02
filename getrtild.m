@@ -12,7 +12,7 @@ rtild_2 = zeros(ne, 1);
 k = 0;
 z = 0;
 for i = 1:ne-1
-  b = xL+(i)*h;
+  b = xL + i*h;
   g = 0;
     
   for j = 1:n 

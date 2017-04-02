@@ -22,7 +22,8 @@ for i = 1:ne
   b = xL + i*h;
    
   for j = 1:1:n
-    htild_4(k+j,1) = (1 -sigma)*Say1(i + 1)*phi(j, i, b) + (-1 - sigma)*Say1(i)*phi(j, i, a);
+    htild_4(k+j,1) = (1-sigma) * Say1(i+1) * phi(j, i, b) ... 
+                     + (-1-sigma) * Say1(i) * phi(j, i, a);
   end
     
   k = k + n;

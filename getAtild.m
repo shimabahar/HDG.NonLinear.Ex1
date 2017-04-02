@@ -42,9 +42,9 @@ for l = 1:n:n*ne
   end
 
   Atild_3(l:k, l:k) = Atild_3s;
-  k = k+n;
-  z = z+1;
-  e = e+1;
+  k = k + n;
+  z = z + 1;
+  e = e + 1;
 end
 Atild_3 = -6*Atild_3 + tau0*A;
 
